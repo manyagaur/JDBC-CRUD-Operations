@@ -31,21 +31,31 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } */
-
+        /*
         try{
             Connection connection=DriverManager.getConnection(url,user,password);
             Statement statement=connection.createStatement();
+            // Create operation
             String query=String.format("insert into Trains(name, day_of_arrival, time_of_arrival)"+ "values('%s','%s','%s')",  "Porbandar Express", "Thursday", "5:00");
             int rows_affected=statement.executeUpdate(query);
             if (rows_affected>0){
                 System.out.println(rows_affected);
             }
-
-
-
-
         }
         catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }*/
+        try {
+            Connection connection = DriverManager.getConnection(url,user,password);
+            Statement statement=connection.createStatement();
+            // Update operation
+            String query = "Update Trains set id='4' where day_of_arrival='Thursday'" ;
+            int rowsAffected = statement.executeUpdate(query);
+            if (rowsAffected>0){
+                System.out.println(rowsAffected);
+            }
+        }
+        catch (SQLException ex){
             System.out.println(ex.getMessage());
         }
 
