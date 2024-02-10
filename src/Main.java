@@ -14,11 +14,11 @@ public class Main {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-        /*
-        try {
+          //Read Operation
+        /*try {
             Connection connection = DriverManager.getConnection(url, user, password);
 
-            //Read Operation
+
             String query = "select * from Trains";
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query);
@@ -32,10 +32,10 @@ public class Main {
             System.out.println(ex.getMessage());
         } */
         /*
+            // Create operation
         try{
             Connection connection=DriverManager.getConnection(url,user,password);
             Statement statement=connection.createStatement();
-            // Create operation
             String query=String.format("insert into Trains(name, day_of_arrival, time_of_arrival)"+ "values('%s','%s','%s')",  "Porbandar Express", "Thursday", "5:00");
             int rows_affected=statement.executeUpdate(query);
             if (rows_affected>0){
@@ -47,10 +47,10 @@ public class Main {
         }*/
 
         /*
+         // Update operation
         try {
             Connection connection = DriverManager.getConnection(url,user,password);
             Statement statement=connection.createStatement();
-            // Update operation
             String query = "Update Trains set id='4' where day_of_arrival='Thursday'" ;
             int rowsAffected = statement.executeUpdate(query);
             if (rowsAffected>0){
@@ -61,7 +61,7 @@ public class Main {
             System.out.println(ex.getMessage());
         }*/
 
-        try{
+        /*try{
             Connection connection=DriverManager.getConnection(url,user,password);
             Statement statement=connection.createStatement();
             String query="delete from Trains where name='Hogwarts Express'";
@@ -69,12 +69,28 @@ public class Main {
             if (rowsAffected>0){
                 System.out.println(rowsAffected);
             }
+        }
+        catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }*/
 
+        // CRUD operations using Prepared Statements
+
+        try{
+            Connection connection=DriverManager.getConnection(url,user,password);
+            String query="select * from Trains where name=?";
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+            preparedStatement.setString(1, "Shatabdi Express");
+            ResultSet resultSet=preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                String day=resultSet.getString("day_of_arrival");
+                System.out.println(day);
+            }
 
         }
         catch (SQLException ex){
             System.out.println(ex.getMessage());
-}
-
+        }
     }
 }
