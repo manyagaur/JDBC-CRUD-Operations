@@ -45,6 +45,8 @@ public class Main {
         catch(SQLException ex){
             System.out.println(ex.getMessage());
         }*/
+
+        /*
         try {
             Connection connection = DriverManager.getConnection(url,user,password);
             Statement statement=connection.createStatement();
@@ -57,9 +59,22 @@ public class Main {
         }
         catch (SQLException ex){
             System.out.println(ex.getMessage());
+        }*/
+
+        try{
+            Connection connection=DriverManager.getConnection(url,user,password);
+            Statement statement=connection.createStatement();
+            String query="delete from Trains where name='Hogwarts Express'";
+            int rowsAffected=statement.executeUpdate(query);
+            if (rowsAffected>0){
+                System.out.println(rowsAffected);
+            }
+
+
         }
-
-
+        catch (SQLException ex){
+            System.out.println(ex.getMessage());
+}
 
     }
 }
