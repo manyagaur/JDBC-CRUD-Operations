@@ -76,7 +76,7 @@ public class Main {
 
         // CRUD operations using Prepared Statements
 
-        try{
+        /*try{
             Connection connection=DriverManager.getConnection(url,user,password);
             String query="select * from Trains where name=?";
             PreparedStatement preparedStatement=connection.prepareStatement(query);
@@ -90,6 +90,54 @@ public class Main {
 
         }
         catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }*/
+
+        //Create Operations using Prepared Statements
+        /*try{
+            Connection connection=DriverManager.getConnection(url,user,password);
+            String query ="insert into Trains (name,day_of_arrival,time_of_arrival) values(?,?,?)";
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+            preparedStatement.setString(1,"Lichchavi Express");
+            preparedStatement.setString(2,"Friday");
+            preparedStatement.setString(3,"14:45");
+            int rowsAffected1=preparedStatement.executeUpdate();
+
+            preparedStatement.setString(1,"Gomti Express");
+            preparedStatement.setString(2,"Tuesday Express");
+            preparedStatement.setString(3,"4:44");
+            int rowsAffected2=preparedStatement.executeUpdate();
+
+
+            if (rowsAffected1+rowsAffected2>0){
+                System.out.println(rowsAffected1+rowsAffected2);
+            }
+        }
+        catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        } */
+
+        // Update Operation using Prepared Statements
+        try{
+            Connection connection=DriverManager.getConnection(url,user,password);
+            String query= "Update Trains set id=? where name=?";
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+
+            preparedStatement.setString(1,"5");
+            preparedStatement.setString(2,"Lichchavi Express");
+            int row1=preparedStatement.executeUpdate();
+
+            preparedStatement.setString(1,"6");
+            preparedStatement.setString(2,"Gomti Express");
+            int row2=preparedStatement.executeUpdate();
+
+            if(row1+row2>0){
+                System.out.println(row1+row2);
+            }
+
+
+        }
+        catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
     }
