@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     private static final String url = "jdbc:mysql://localhost:3306/diy";
     private static final String user = "root";
-    private static final String password = "Bobbyy72@";
+    private static final String password = "";
 
 
     public static void main(String[] args) {
@@ -134,8 +134,6 @@ public class Main {
             if(row1+row2>0){
                 System.out.println(row1+row2);
             }
-
-
         }
         catch(SQLException ex){
             System.out.println(ex.getMessage());
